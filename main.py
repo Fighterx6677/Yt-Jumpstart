@@ -2,8 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 import traceback
-import os
-import tempfile
 
 VIDEO_URL = "https://www.youtube.com/shorts/5VD1KjZ9cs0"
 
@@ -13,8 +11,6 @@ def watch_video():
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124")
-    temp_dir = tempfile.mkdtemp()
-    options.add_argument(f"--user-data-dir={temp_dir}")
 
     while True:
         driver = None
@@ -37,11 +33,6 @@ def watch_video():
             if driver:
                 driver.quit()
                 print("ChromeDriver closed after error")
-        finally:
-            try:
-                os.rmdir(temp_dir)
-            except:
-                pass
             time.sleep(300)
 
 if __name__ == "__main__":
