@@ -13,7 +13,6 @@ def watch_video():
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/91.0.4472.124")
-    # Use a temporary directory for user data to avoid conflicts
     temp_dir = tempfile.mkdtemp()
     options.add_argument(f"--user-data-dir={temp_dir}")
 
@@ -39,7 +38,6 @@ def watch_video():
                 driver.quit()
                 print("ChromeDriver closed after error")
         finally:
-            # Clean up the temporary directory
             try:
                 os.rmdir(temp_dir)
             except:
